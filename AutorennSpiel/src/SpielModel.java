@@ -1,4 +1,3 @@
-
 import javafx.util.Pair;
 
 public class SpielModel {
@@ -9,15 +8,21 @@ public class SpielModel {
         CalculatePlayerMovement(aPlayer2, aCurrentWeather, aNewStatusPlayer2);
     }
     
-    public Pair<Player, Player> Initialization(String PlayerName1, String PlayerName2)
+    public Pair<Player, Player> Initialization(String aPlayerName1, String aPlayerName2)
     {
+       Player player1 = new Player(aPlayerName1);
+       Player player2 = new Player(aPlayerName2);
        
+       return new Pair(player1, player2);
     }
     
-    public int CalculatePlayerMovement(Player aPlayer, Wetter aWeather, Status newStatus)
+    private int CalculatePlayerMovement(Player aPlayer, Wetter aWeather, Status newStatus)
     {
         if (aPlayer.getStatus() == Status.win)
+        {
             aPlayer.IncPoints();
+            return -1;
+        }
         
         if (aPlayer.getStatus() == newStatus)
             aPlayer.IncStatusDuration();
@@ -27,46 +32,85 @@ public class SpielModel {
             aPlayer.ResetStatusDuration();
         }
         
-        int movementValue = 0;
+        CalculatePlayerSpeedAfterStatus(aPlayer, aPlayer.getStatusDuration());
+        CalculatePlayerSpeedAfterWeather(aPlayer, aWeather);
+        CalculatePlayerFuelConsumption(aPlayer);
         
-        movementValue = CalculateMovementAfterSpeed(movementValue, aPlayer.getCurrentSpeed());
+        if (!DetermineMovementEligibility(aPlayer))
+            return 0;
         
-        return movementValue;
+        return (int)aPlayer.getCurrentSpeed();
     }
     
-    private int CalculateMovementAfterSpeed(int aMovementValue, double aPlayerSpeed)
+    private boolean DetermineMovementEligibility(Player aPlayer)
     {
-        return aMovementValue += aPlayerSpeed;
+        return aPlayer.getFuel() > 0;
     }
     
-    private int CalculateMovementAfterStatus(int aMovementValue, Status aPlayerStatus, int aStatusDuration)
+    private void CalculatePlayerSpeedAfterStatus(Player aPlayer, int aStatusDuration)
     {
-        double tempMovementValue = (double) aMovementValue;
-        
-        if (aPlayerStatus == Status.accelerate)
+        double speedIncrement = 0;
+        if (aPlayer.getStatus() == Status.accelerate)
         {
-            if (aStatusDuration < 2)
+            if (aPlayer.getCurrentSpeed() == 0)
+                speedIncrement += 10;
+            else if (aStatusDuration < 2)
             {
-                tempMovementValue += tempMovementValue * .15 * (double)aStatusDuration;
+                speedIncrement += aPlayer.getCurrentSpeed() * .15 * (double)aStatusDuration;
             }
             else
             {
-                tempMovementValue += tempMovementValue * .45 - (.2 / (double)aStatusDuration);
+                speedIncrement += aPlayer.getCurrentSpeed() * .45 - (.2 / (double)aStatusDuration);
             }
         }
-        else if (aPlayerStatus == Status.deccelerate)
+        else if (aPlayer.getStatus() == Status.deccelerate)
         {
             if (aStatusDuration < 2)
             {
-                tempMovementValue -= tempMovementValue * .15 * (double)aStatusDuration;
+                speedIncrement -= aPlayer.getCurrentSpeed() * .15 * (double)aStatusDuration;
             }
             else
             {
-                tempMovementValue -= tempMovementValue * .45 - (.2 / (double)aStatusDuration);
+                speedIncrement -= aPlayer.getCurrentSpeed() * .45 - (.2 / (double)aStatusDuration);
             }
         }
+
+        aPlayer.increaseSpeed(speedIncrement);
+    }
+    
+    private void CalculatePlayerSpeedAfterWeather(Player aPlayer, Wetter aWeather)
+    {
+        double speedIncrement = 0;
         
-        return aMovementValue;
+        if (aWeather == Wetter.headwind)
+            speedIncrement -= aPlayer.getCurrentSpeed() * .08;
+        else if (aWeather == Wetter.tailwind)
+            speedIncrement += aPlayer.getCurrentSpeed() * .08;
+        else if (aWeather == Wetter.rain)
+        {
+            if (aPlayer.getStatus() == Status.accelerate)
+                speedIncrement -= aPlayer.getCurrentSpeed() * .05;
+            else if (aPlayer.getStatus() == Status.deccelerate)
+                speedIncrement += aPlayer.getCurrentSpeed() * .05;
+        }
+        else if (aWeather == Wetter.snow)
+        {
+            if (aPlayer.getStatus() == Status.accelerate)
+                speedIncrement -= aPlayer.getCurrentSpeed() * .1;
+            else if (aPlayer.getStatus() == Status.deccelerate)
+                speedIncrement += aPlayer.getCurrentSpeed() * .1;            
+        }
+        
+        aPlayer.increaseSpeed(speedIncrement);
+    }
+    
+    private void CalculatePlayerFuelConsumption(Player aPlayer)
+    {
+        double consumptionValue = 0;
+        
+        consumptionValue = aPlayer.getCurrentSpeed() *.5;
+        
+        aPlayer.decreaseFuel(consumptionValue);
     }
 }
 
