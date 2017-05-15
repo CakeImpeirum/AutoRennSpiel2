@@ -3,7 +3,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Point;
-import java.util.function.DoubleToIntFunction;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.util.Pair;
@@ -34,6 +33,8 @@ public class SpielFeldView extends javax.swing.JFrame {
     Status Ss1, Ss2;
     Player Player1, Player2;
     SpielModel logic;
+    SettingsView settingsView;
+    JDialog settingsContainer;
     
     public SpielFeldView() throws IOException{
         initComponents();
