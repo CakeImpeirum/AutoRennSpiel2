@@ -3,7 +3,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Point;
-import java.util.function.DoubleToIntFunction;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.util.Pair;
@@ -11,6 +10,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,14 +31,26 @@ public class SpielFeldView extends javax.swing.JFrame {
      */
     boolean Sieler1weiterclick, Spieler2Weiterklick;
     Status Ss1, Ss2;
-    Player Player1, Player2;
+    Player Player1, Player2;        
     SpielModel logic;
     Point Playerlocation1, PlayerLocation2;
+    SettingsView settingsView;
+    JDialog settingsContainer;
     
     public SpielFeldView() throws IOException{
         initComponents();
+        settingsContainer = new JDialog();
+        settingsView = new SettingsView(settingsContainer);      
+        settingsContainer.add(settingsView);        
+        settingsContainer.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        settingsContainer.setLocationByPlatform(false);
+        settingsContainer.pack();
+        settingsContainer.setModal(true);  
+        settingsContainer.setResizable(false);
+        settingsContainer.setVisible(true);
+        
         logic = new SpielModel();
-        Pair<Player, Player> Players = logic.Initialization("Test1", "Test2");
+        Pair<Player, Player> Players = logic.Initialization(settingsView.getNamePlayer1(), settingsView.getNamePlayer2());
         Player1 = Players.getKey();
         Player2 = Players.getValue();
         fuelDisplayPlayer1.setText("Tank " + Player1.getPlayerName());
