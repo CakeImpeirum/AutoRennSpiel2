@@ -82,4 +82,12 @@ public class Player {
     {
         this.fPlayerName = aPlayerName;
     }
+    
+    public void ResetPlayer()
+    {
+        this.fFuel = 100;
+        this.fSpeed = 0;
+        this.fStatus = Status.pass;
+        this.fStatusDuration = 0;
+    }
 }
