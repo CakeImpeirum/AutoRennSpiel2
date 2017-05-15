@@ -34,23 +34,15 @@ public class SpielFeldView extends javax.swing.JFrame {
     Player Player1, Player2;        
     SpielModel logic;
     Point Playerlocation1, PlayerLocation2;
-    SettingsView settingsView;
-    JDialog settingsContainer;
+    GameSettings settings;
     
     public SpielFeldView() throws IOException{
         initComponents();
-        settingsContainer = new JDialog();
-        settingsView = new SettingsView(settingsContainer);      
-        settingsContainer.add(settingsView);        
-        settingsContainer.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        settingsContainer.setLocationByPlatform(false);
-        settingsContainer.pack();
-        settingsContainer.setModal(true);  
-        settingsContainer.setResizable(false);
-        settingsContainer.setVisible(true);
         
+        settings = new GameSettings(this);
+        settings.execute();
         logic = new SpielModel();
-        Pair<Player, Player> Players = logic.Initialization(settingsView.getNamePlayer1(), settingsView.getNamePlayer2());
+        Pair<Player, Player> Players = logic.Initialization(settings.getNamePlayer1(), settings.getNamePlayer2());
         Player1 = Players.getKey();
         Player2 = Players.getValue();
         fuelDisplayPlayer1.setText("Tank " + Player1.getPlayerName());
