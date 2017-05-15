@@ -10,6 +10,7 @@ import javafx.util.Pair;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -395,6 +396,8 @@ public class SpielFeldView extends javax.swing.JFrame {
           autoSpieler1.setLayout(null);
           AutoSpieler2.setLayout(null);
           
+          int s1 = (int)Math.round(Player1.getCurrentSpeed()/2);
+          int s2 = (int)Math.round(Player2.getCurrentSpeed()/2);
           autoSpieler1.setLocation(locpl1.x, locpl1.y - (int)Math.round(Player1.getCurrentSpeed()/2));
           AutoSpieler2.setLocation(locpl2.x, locpl2.y - (int)Math.round(Player2.getCurrentSpeed()/2));
           
@@ -440,11 +443,17 @@ public class SpielFeldView extends javax.swing.JFrame {
         }
         if (Ss2 == Status.win)
         {
-            wloc += " und Spieler " + Player2.getPlayerName() + " haben gewonnen";
+            if (Ss1 == Status.win)
+                wloc += " und Spieler " + Player2.getPlayerName() + " haben gewonnen";
+            else
+              wloc += Player2.getPlayerName() + " hat gewonnen";
             Player2.IncPoints();
         }
         else
             wloc += " hat gewonnen";
+        if (Ss1 == Status.win || Ss2 == Status.win)
+          JOptionPane.showMessageDialog(this, wloc);
+        Ss1 = Status.pass;Ss2 = Status.pass;
         
     }
 
