@@ -19,6 +19,11 @@ public class SpielModel
        return new Pair(player1, player2);
     }
     
+    public Wetter getCurrentWeather()
+    {
+        return fSpielfeld.getWetter();
+    }
+    
     private int CalculatePlayerMovement(Player aPlayer, Wetter aWeather, Status newStatus)
     {
         if (aPlayer.getStatus() == Status.win)
