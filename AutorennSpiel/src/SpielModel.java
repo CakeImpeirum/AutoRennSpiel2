@@ -3,7 +3,7 @@ import javafx.util.Pair;
 
 public class SpielModel {
 
-    public void Tick(Status StatusSpieler1, Status StatusSpieler2) {
+    public void Tick(Player StatusSpieler1, Player StatusSpieler2) {
     }
     
     public Pair<Player, Player> Initialization(String PlayerName1, String PlayerName2)
@@ -66,4 +66,3 @@ public class SpielModel {
     }
 }
 
-}
