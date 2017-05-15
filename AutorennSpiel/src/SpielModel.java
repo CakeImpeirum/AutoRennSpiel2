@@ -3,6 +3,7 @@ import javafx.util.Pair;
 public class SpielModel 
 {
     Spielfeld fSpielfeld;
+    int _baseSpeedIncrement = 10;
     
     public void Tick(Player aPlayer1, Player aPlayer2, Status aNewStatusPlayer1, Status aNewStatusPlayer2)
     {
@@ -58,7 +59,7 @@ public class SpielModel
         if (aPlayer.getStatus() == Status.accelerate)
         {
             if (aPlayer.getCurrentSpeed() == 0)
-                speedIncrement += 10;
+                speedIncrement += _baseSpeedIncrement;
             else if (aStatusDuration < 2)
             {
                 speedIncrement += aPlayer.getCurrentSpeed() * .15 * (double)aStatusDuration;

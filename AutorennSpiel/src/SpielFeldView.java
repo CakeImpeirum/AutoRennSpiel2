@@ -416,10 +416,19 @@ public class SpielFeldView extends javax.swing.JFrame {
           Sieler1weiterclick = false;
           Spieler2Weiterklick = false;
           
-          if(jPanel1.getLocation().y > autoSpieler1.getLocation().y || Player2.getFuel() < 0)
+          if(jPanel1.getLocation().y > autoSpieler1.getLocation().y)
               Ss1 = Status.win;
-          if(jPanel2.getLocation().y > AutoSpieler2.getLocation().y  || Player1.getFuel() < 0)
+          if(jPanel2.getLocation().y > AutoSpieler2.getLocation().y)
               Ss2 = Status.win;
+          if (Player2.getFuel() <= 0 && Player1.getFuel() <= 0)
+          {
+            if (autoSpieler1.getLocation().y < AutoSpieler2.getLocation().y)
+                Ss1 = Status.win;
+            else if (autoSpieler1.getLocation().y > AutoSpieler2.getLocation().y)
+                Ss2 = Status.win;
+            else
+                Ss1 = Ss2 = Status.win;
+          }
           
         }   
         
