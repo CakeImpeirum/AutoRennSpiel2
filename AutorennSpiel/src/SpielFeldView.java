@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.Point;
 import java.util.function.DoubleToIntFunction;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.util.Pair;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -44,9 +46,9 @@ public class SpielFeldView extends javax.swing.JFrame {
         Playerlocation1 = autoSpieler1.getLocation();
         PlayerLocation2 = AutoSpieler2.getLocation();
         weatherDisplay.setText("Aktuelles Wetter: " + logic.getCurrentWeather().toString());
-        BufferedImage car1Picture = ImageIO.read(new File("path-to-file"));
+        BufferedImage car1Picture = ImageIO.read(new File("C:\\Development\\Smit\\AutoRennSpiel2\\AutorennSpiel\\src\\AutoWeiß.png"));
         autoSpieler1.add(new JLabel(new ImageIcon(car1Picture)));
-        BufferedImage car2Picture = ImageIO.read(new File("path-to-file"));
+        BufferedImage car2Picture = ImageIO.read(new File("C:\\Development\\Smit\\AutoRennSpiel2\\AutorennSpiel\\src\\AutoGelb.png"));
         AutoSpieler2.add(new JLabel(new ImageIcon(car2Picture)));
     }
 
@@ -369,7 +371,11 @@ public class SpielFeldView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SpielFeldView().setVisible(true);
+                try {
+                    new SpielFeldView().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(SpielFeldView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -389,8 +395,8 @@ public class SpielFeldView extends javax.swing.JFrame {
           autoSpieler1.setLayout(null);
           AutoSpieler2.setLayout(null);
           
-          autoSpieler1.setLocation(locpl1.x, locpl1.y - (int)Math.round(Player1.getCurrentSpeed()/4));
-          AutoSpieler2.setLocation(locpl2.x, locpl2.y - (int)Math.round(Player1.getCurrentSpeed()/4));
+          autoSpieler1.setLocation(locpl1.x, locpl1.y - (int)Math.round(Player1.getCurrentSpeed()/2));
+          AutoSpieler2.setLocation(locpl2.x, locpl2.y - (int)Math.round(Player2.getCurrentSpeed()/2));
           
           continuePlayer1.setEnabled(true);
           acceleratePlayer1.setEnabled(true);
@@ -403,9 +409,9 @@ public class SpielFeldView extends javax.swing.JFrame {
           Sieler1weiterclick = false;
           Spieler2Weiterklick = false;
           
-          if(jPanel1.getLocation().y < autoSpieler1.getLocation().y)
+          if(jPanel1.getLocation().y > autoSpieler1.getLocation().y || Player2.getFuel() < 0)
               Ss1 = Status.win;
-          if(jPanel2.getLocation().y < AutoSpieler2.getLocation().y)
+          if(jPanel2.getLocation().y > AutoSpieler2.getLocation().y  || Player1.getFuel() < 0)
               Ss2 = Status.win;
           
         }   
@@ -419,8 +425,26 @@ public class SpielFeldView extends javax.swing.JFrame {
                 Ss1 = Status.pass;
             autoSpieler1.setLocation(Playerlocation1);
             AutoSpieler2.setLocation(PlayerLocation2);
-            
+            Player1.ResetPlayer();
+            Player2.ResetPlayer();
+            fuelGaugePlayer1.setValue(100);
+            fuelGaugePlayer2.setValue(100);           
         }
+        
+        String wloc = "Spieler ";
+         
+        if (Ss1 == Status.win)
+        {
+            wloc += Player1.getPlayerName();
+            Player1.IncPoints();
+        }
+        if (Ss2 == Status.win)
+        {
+            wloc += " und Spieler " + Player2.getPlayerName() + " haben gewonnen";
+            Player2.IncPoints();
+        }
+        else
+            wloc += " hat gewonnen";
         
     }
 
