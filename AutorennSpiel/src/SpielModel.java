@@ -1,17 +1,20 @@
 import javafx.util.Pair;
 
-public class SpielModel {
-
-    public void Tick(Player aPlayer1, Player aPlayer2, Status aNewStatusPlayer1, Status aNewStatusPlayer2, Wetter aCurrentWeather)
+public class SpielModel 
+{
+    Spielfeld fSpielfeld;
+    
+    public void Tick(Player aPlayer1, Player aPlayer2, Status aNewStatusPlayer1, Status aNewStatusPlayer2)
     {
-        CalculatePlayerMovement(aPlayer1, aCurrentWeather, aNewStatusPlayer1);
-        CalculatePlayerMovement(aPlayer2, aCurrentWeather, aNewStatusPlayer2);
+        CalculatePlayerMovement(aPlayer1, fSpielfeld.getWetter(), aNewStatusPlayer1);
+        CalculatePlayerMovement(aPlayer2, fSpielfeld.getWetter(), aNewStatusPlayer2);
     }
     
     public Pair<Player, Player> Initialization(String aPlayerName1, String aPlayerName2)
     {
        Player player1 = new Player(aPlayerName1);
        Player player2 = new Player(aPlayerName2);
+       this.fSpielfeld = new Spielfeld();
        
        return new Pair(player1, player2);
     }
