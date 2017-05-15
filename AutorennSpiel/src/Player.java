@@ -1,6 +1,6 @@
 public class Player {
 
-    private double fFuel;
+    private double fFuel = 100;
 
     private double fSpeed;
 
