@@ -2,6 +2,8 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Point;
+import java.util.function.DoubleToIntFunction;
 import javafx.util.Pair;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -27,6 +29,7 @@ public class SpielFeldView extends javax.swing.JFrame {
     Status Ss1, Ss2;
     Player Player1, Player2;
     SpielModel logic;
+    Point Playerlocation1, PlayerLocation2;
     
     public SpielFeldView() throws IOException{
         initComponents();
@@ -38,6 +41,9 @@ public class SpielFeldView extends javax.swing.JFrame {
         fuelDisplayPlayer2.setText("Tank " + Player2.getPlayerName());
         fuelGaugePlayer1.setValue(100);
         fuelGaugePlayer2.setValue(100);
+        Playerlocation1 = autoSpieler1.getLocation();
+        PlayerLocation2 = AutoSpieler2.getLocation();
+        weatherDisplay.setText("Aktuelles Wetter: " + logic.getCurrentWeather().toString());
         BufferedImage car1Picture = ImageIO.read(new File("path-to-file"));
         autoSpieler1.add(new JLabel(new ImageIcon(car1Picture)));
         BufferedImage car2Picture = ImageIO.read(new File("path-to-file"));
@@ -370,14 +376,52 @@ public class SpielFeldView extends javax.swing.JFrame {
         
     }
     
-    private Player Spieler1, Spieler2;
-    
     private void Tick()
     {
         if (Sieler1weiterclick && Spieler2Weiterklick == true)
+        {        
+          Point locpl1, locpl2;
+          logic.Tick(Player1, Player2, Ss1, Ss2);
+          fuelGaugePlayer1.setValue((int)Math.round(Player1.getFuel()));
+          fuelGaugePlayer2.setValue((int)Math.round(Player2.getFuel()));
+          locpl1 = autoSpieler1.getLocation();
+          locpl2 = AutoSpieler2.getLocation();
+          autoSpieler1.setLayout(null);
+          AutoSpieler2.setLayout(null);
+          
+          autoSpieler1.setLocation(locpl1.x, locpl1.y - (int)Math.round(Player1.getCurrentSpeed()/4));
+          AutoSpieler2.setLocation(locpl2.x, locpl2.y - (int)Math.round(Player1.getCurrentSpeed()/4));
+          
+          continuePlayer1.setEnabled(true);
+          acceleratePlayer1.setEnabled(true);
+          brakePlayer1.setEnabled(true);  
+          
+          continuePlayer2.setEnabled(true);
+          acceleratePlayer2.setEnabled(true);
+          brakePlayer2.setEnabled(true); 
+          
+          Sieler1weiterclick = false;
+          Spieler2Weiterklick = false;
+          
+          if(jPanel1.getLocation().y < autoSpieler1.getLocation().y)
+              Ss1 = Status.win;
+          if(jPanel2.getLocation().y < AutoSpieler2.getLocation().y)
+              Ss2 = Status.win;
+          
+        }   
+        
+        if (Ss1 == Status.win ||  Ss2 == Status.win)
         {
+            if(autoSpieler1.getLocation().y > AutoSpieler2.getLocation().y)
+            {
+                Ss2 = Status.pass;
+            }else
+                Ss1 = Status.pass;
+            autoSpieler1.setLocation(Playerlocation1);
+            AutoSpieler2.setLocation(PlayerLocation2);
             
-        }     
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
