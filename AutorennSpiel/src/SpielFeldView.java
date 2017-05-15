@@ -405,10 +405,8 @@ public class SpielFeldView extends javax.swing.JFrame {
           autoSpieler1.setLayout(null);
           AutoSpieler2.setLayout(null);
           
-          int s1 = (int)Math.round(Player1.getCurrentSpeed()/2);
-          int s2 = (int)Math.round(Player2.getCurrentSpeed()/2);
-          autoSpieler1.setLocation(locpl1.x, locpl1.y - (int)Math.round(Player1.getCurrentSpeed()/2));
-          AutoSpieler2.setLocation(locpl2.x, locpl2.y - (int)Math.round(Player2.getCurrentSpeed()/2));
+          autoSpieler1.setLocation(locpl1.x, locpl1.y - (int)Math.round(Player1.getCurrentSpeed()));
+          AutoSpieler2.setLocation(locpl2.x, locpl2.y - (int)Math.round(Player2.getCurrentSpeed()));
           
           continuePlayer1.setEnabled(true);
           acceleratePlayer1.setEnabled(true);
@@ -421,9 +419,9 @@ public class SpielFeldView extends javax.swing.JFrame {
           Sieler1weiterclick = false;
           Spieler2Weiterklick = false;
           
-          if(jPanel1.getLocation().y > autoSpieler1.getLocation().y)
+          if(0 > autoSpieler1.getLocation().y)
               Ss1 = Status.win;
-          if(jPanel2.getLocation().y > AutoSpieler2.getLocation().y)
+          if(0 > AutoSpieler2.getLocation().y)
               Ss2 = Status.win;
           if (Player2.getFuel() <= 0 && Player1.getFuel() <= 0)
           {
@@ -439,7 +437,7 @@ public class SpielFeldView extends javax.swing.JFrame {
         
         if (Ss1 == Status.win ||  Ss2 == Status.win)
         {
-            if(autoSpieler1.getLocation().y > AutoSpieler2.getLocation().y)
+            if(autoSpieler1.getLocation().y < AutoSpieler2.getLocation().y)
             {
                 Ss2 = Status.pass;
             }else
