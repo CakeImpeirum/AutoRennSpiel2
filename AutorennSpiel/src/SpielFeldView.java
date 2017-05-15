@@ -1,5 +1,11 @@
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javafx.util.Pair;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,7 +28,7 @@ public class SpielFeldView extends javax.swing.JFrame {
     Player Player1, Player2;
     SpielModel logic;
     
-    public SpielFeldView() {
+    public SpielFeldView() throws IOException{
         initComponents();
         logic = new SpielModel();
         Pair<Player, Player> Players = logic.Initialization("Test1", "Test2");
@@ -32,6 +38,10 @@ public class SpielFeldView extends javax.swing.JFrame {
         fuelDisplayPlayer2.setText("Tank " + Player2.getPlayerName());
         fuelGaugePlayer1.setValue(100);
         fuelGaugePlayer2.setValue(100);
+        BufferedImage car1Picture = ImageIO.read(new File("path-to-file"));
+        autoSpieler1.add(new JLabel(new ImageIcon(car1Picture)));
+        BufferedImage car2Picture = ImageIO.read(new File("path-to-file"));
+        AutoSpieler2.add(new JLabel(new ImageIcon(car2Picture)));
     }
 
     /**
