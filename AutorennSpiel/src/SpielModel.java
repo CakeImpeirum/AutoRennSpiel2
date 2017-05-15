@@ -44,8 +44,7 @@ public class SpielModel
         CalculatePlayerFuelConsumption(aPlayer);
         
         if (!DetermineMovementEligibility(aPlayer))
-            aPlayer.increaseSpeed(-aPlayer.getCurrentSpeed());
-        
+            aPlayer.increaseSpeed(-aPlayer.getCurrentSpeed());        
     }
     
     private boolean DetermineMovementEligibility(Player aPlayer)
@@ -114,7 +113,7 @@ public class SpielModel
     {
         double consumptionValue = 0;
         
-        consumptionValue = aPlayer.getCurrentSpeed() *.5;
+        consumptionValue = aPlayer.getCurrentSpeed() * .2;
         
         aPlayer.decreaseFuel(consumptionValue);
     }
