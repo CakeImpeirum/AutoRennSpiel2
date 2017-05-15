@@ -456,8 +456,10 @@ public class SpielFeldView extends javax.swing.JFrame {
         else
             wloc += " hat gewonnen";
         if (Ss1 == Status.win || Ss2 == Status.win)
-          JOptionPane.showMessageDialog(this, wloc);
-        Ss1 = Status.pass;Ss2 = Status.pass;
+        {  
+           JOptionPane.showMessageDialog(this, wloc);
+           Ss1 = Status.pass;Ss2 = Status.pass;
+        }
         
     }
 
