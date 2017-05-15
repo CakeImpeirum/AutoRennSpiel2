@@ -3,7 +3,10 @@ import javafx.util.Pair;
 
 public class SpielModel {
 
-    public void Tick(Player StatusSpieler1, Player StatusSpieler2) {
+    public void Tick(Player aPlayer1, Player aPlayer2, Status aNewStatusPlayer1, Status aNewStatusPlayer2, Wetter aCurrentWeather)
+    {
+        CalculatePlayerMovement(aPlayer1, aCurrentWeather, aNewStatusPlayer1);
+        CalculatePlayerMovement(aPlayer2, aCurrentWeather, aNewStatusPlayer2);
     }
     
     public Pair<Player, Player> Initialization(String PlayerName1, String PlayerName2)
@@ -21,6 +24,7 @@ public class SpielModel {
         else
         {
             aPlayer.setStatus(newStatus);
+            aPlayer.ResetStatusDuration();
         }
         
         int movementValue = 0;
