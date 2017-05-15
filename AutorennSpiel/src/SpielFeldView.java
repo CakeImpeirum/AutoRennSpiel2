@@ -31,8 +31,9 @@ public class SpielFeldView extends javax.swing.JFrame {
      */
     boolean Sieler1weiterclick, Spieler2Weiterklick;
     Status Ss1, Ss2;
-    Player Player1, Player2;
+    Player Player1, Player2;        
     SpielModel logic;
+    Point Playerlocation1, PlayerLocation2;
     SettingsView settingsView;
     JDialog settingsContainer;
     
