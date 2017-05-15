@@ -1,6 +1,6 @@
 public class Player {
 
-    private double fFuel;
+    private double fFuel = 100;
 
     private double fSpeed;
 
@@ -60,6 +60,8 @@ public class Player {
     public void increaseSpeed(double aAmount) 
     {
         this.fSpeed += aAmount;
+        if (fSpeed < 0)
+            fSpeed = 0;
     }
 
     public void setStatus(Status aStatus) 
@@ -81,5 +83,13 @@ public class Player {
     public Player(String aPlayerName) 
     {
         this.fPlayerName = aPlayerName;
+    }
+    
+    public void ResetPlayer()
+    {
+        this.fFuel = 100;
+        this.fSpeed = 0;
+        this.fStatus = Status.pass;
+        this.fStatusDuration = 0;
     }
 }

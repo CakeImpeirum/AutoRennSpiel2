@@ -19,12 +19,16 @@ public class SpielModel
        return new Pair(player1, player2);
     }
     
-    private int CalculatePlayerMovement(Player aPlayer, Wetter aWeather, Status newStatus)
+    public Wetter getCurrentWeather()
+    {
+        return fSpielfeld.getWetter();
+    }
+    
+    private void CalculatePlayerMovement(Player aPlayer, Wetter aWeather, Status newStatus)
     {
         if (aPlayer.getStatus() == Status.win)
         {
             aPlayer.IncPoints();
-            return -1;
         }
         
         if (aPlayer.getStatus() == newStatus)
@@ -40,9 +44,7 @@ public class SpielModel
         CalculatePlayerFuelConsumption(aPlayer);
         
         if (!DetermineMovementEligibility(aPlayer))
-            return 0;
-        
-        return (int)aPlayer.getCurrentSpeed();
+            aPlayer.increaseSpeed(-aPlayer.getCurrentSpeed());        
     }
     
     private boolean DetermineMovementEligibility(Player aPlayer)
@@ -111,7 +113,7 @@ public class SpielModel
     {
         double consumptionValue = 0;
         
-        consumptionValue = aPlayer.getCurrentSpeed() *.5;
+        consumptionValue = aPlayer.getCurrentSpeed() * .2;
         
         aPlayer.decreaseFuel(consumptionValue);
     }
