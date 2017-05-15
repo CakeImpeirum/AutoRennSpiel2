@@ -60,6 +60,8 @@ public class Player {
     public void increaseSpeed(double aAmount) 
     {
         this.fSpeed += aAmount;
+        if (fSpeed < 0)
+            fSpeed = 0;
     }
 
     public void setStatus(Status aStatus) 
