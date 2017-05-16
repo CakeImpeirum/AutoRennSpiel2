@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Development/Smit/AutoRennSpiel/JavaApplication7/src/SpielFeldView.java</file>
-            <file>file:/C:/Development/Smit/AutoRennSpiel/JavaApplication7/src/Wetter.java</file>
-            <file>file:/C:/Development/Smit/AutoRennSpiel/JavaApplication7/src/Spielfeld.java</file>
-            <file>file:/C:/Development/Smit/AutoRennSpiel/JavaApplication7/src/Status.java</file>
+            <file>file:/C:/Development/Smit/AutoRennSpiel2/AutorennSpiel/src/Spielfeld.java</file>
+            <file>file:/C:/Development/Smit/AutoRennSpiel2/AutorennSpiel/src/Wetter.java</file>
+            <file>file:/C:/Development/Smit/AutoRennSpiel2/AutorennSpiel/src/OptionsView.java</file>
+            <file>file:/C:/Development/Smit/AutoRennSpiel2/AutorennSpiel/src/Player.java</file>
+            <file>file:/C:/Development/Smit/AutoRennSpiel2/AutorennSpiel/src/SpielModel.java</file>
+            <file>file:/C:/Development/Smit/AutoRennSpiel2/AutorennSpiel/src/Status.java</file>
+            <file>file:/C:/Development/Smit/AutoRennSpiel2/AutorennSpiel/src/SpielFeldView.java</file>
         </group>
     </open-files>
 </project-private>

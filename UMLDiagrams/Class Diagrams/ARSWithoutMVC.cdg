@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="AutorennSpiel">
+  <ClassDiagramComponents>
+    <Class name="GameSettings" package="" visibility="public" xPosition="1347.0" yPosition="1244.0">
+      <Fields>
+        <Field name="settingsView" type="SettingsView" visibility="private" isFinal="true"/>
+        <Field name="settingsContainer" type="JDialog" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="JFrame" name="parent"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="execute" returnType="void" visibility="public"/>
+        <Method name="getNamePlayer1" returnType="String" visibility="public"/>
+        <Method name="getNamePlayer2" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="OptionsView" package="" visibility="public" xPosition="697.0" yPosition="421.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Player" package="" visibility="public" xPosition="1571.0" yPosition="528.0">
+      <Fields>
+        <Field name="fFuel" type="double" visibility="private"/>
+        <Field name="fSpeed" type="double" visibility="private"/>
+        <Field name="fPlayerName" type="String" visibility="private"/>
+        <Field name="fStatus" type="Status" visibility="private"/>
+        <Field name="fPoints" type="int" visibility="private"/>
+        <Field name="fStatusDuration" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="aPlayerName"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFuel" returnType="double" visibility="public"/>
+        <Method name="getCurrentSpeed" returnType="double" visibility="public"/>
+        <Method name="getPlayerName" returnType="String" visibility="public"/>
+        <Method name="getStatus" returnType="Status" visibility="public"/>
+        <Method name="getPoints" returnType="int" visibility="public"/>
+        <Method name="getStatusDuration" returnType="int" visibility="public"/>
+        <Method name="IncPoints" returnType="void" visibility="public"/>
+        <Method name="IncStatusDuration" returnType="void" visibility="public"/>
+        <Method name="ResetStatusDuration" returnType="void" visibility="public"/>
+        <Method name="increaseSpeed" returnType="void" visibility="public">
+          <Argument type="double" name="aAmount"/>
+        </Method>
+        <Method name="setStatus" returnType="void" visibility="public">
+          <Argument type="Status" name="aStatus"/>
+        </Method>
+        <Method name="decreaseFuel" returnType="void" visibility="public">
+          <Argument type="double" name="aAmount"/>
+        </Method>
+        <Method name="Tick" returnType="void" visibility="public"/>
+        <Method name="ResetPlayer" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SettingsView" package="" visibility="public" xPosition="320.0" yPosition="962.0">
+      <Fields>
+        <Field name="parentContainer" type="JDialog" visibility="package"/>
+        <Field name="btnOK" type="javax.swing.JButton" visibility="private"/>
+        <Field name="edPlayer1" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="edPlayer2" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="lblHeadline" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblPlayer1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblPlayer2" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="JDialog" name="parentContainer"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="edPlayer1FocusGained" returnType="void" visibility="private">
+          <Argument type="java.awt.event.FocusEvent" name="evt"/>
+        </Method>
+        <Method name="edPlayer2FocusGained" returnType="void" visibility="private">
+          <Argument type="java.awt.event.FocusEvent" name="evt"/>
+        </Method>
+        <Method name="btnOKActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="CheckFields" returnType="boolean" visibility="private"/>
+        <Method name="getNamePlayer1" returnType="String" visibility="public"/>
+        <Method name="getNamePlayer2" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Spielfeld" package="" visibility="public" xPosition="1597.0" yPosition="174.0">
+      <Fields>
+        <Field name="fWetter" type="Wetter" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getWetter" returnType="Wetter" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SpielFeldView" package="" visibility="public" xPosition="1906.0" yPosition="782.0">
+      <Fields>
+        <Field name="Sieler1weiterclick" type="boolean" visibility="package"/>
+        <Field name="Ss1" type="Status" visibility="package"/>
+        <Field name="Player1" type="Player" visibility="package"/>
+        <Field name="logic" type="SpielModel" visibility="package"/>
+        <Field name="Playerlocation1" type="Point" visibility="package"/>
+        <Field name="settings" type="GameSettings" visibility="package"/>
+        <Field name="AutoSpieler2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="acceleratePlayer1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="acceleratePlayer2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="autoSpieler1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="brakePlayer1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="brakePlayer2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="continuePlayer1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="continuePlayer2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="currentWeatherInformation" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="fuelDisplayPlayer1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="fuelDisplayPlayer2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="fuelGaugePlayer1" type="javax.swing.JProgressBar" visibility="private"/>
+        <Field name="fuelGaugePlayer2" type="javax.swing.JProgressBar" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="weatherDisplay" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="disabuttpl1" returnType="void" visibility="private"/>
+        <Method name="dbp2" returnType="void" visibility="private"/>
+        <Method name="continuePlayer1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="continuePlayer2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="acceleratePlayer1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="brakePlayer1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="acceleratePlayer2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="brakePlayer2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="Tick" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="SpielModel" package="" visibility="public" xPosition="1896.0" yPosition="174.0">
+      <Fields>
+        <Field name="fSpielfeld" type="Spielfeld" visibility="package"/>
+        <Field name="_baseSpeedIncrement" type="int" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="Tick" returnType="void" visibility="public">
+          <Argument type="Player" name="aPlayer1"/>
+          <Argument type="Player" name="aPlayer2"/>
+          <Argument type="Status" name="aNewStatusPlayer1"/>
+          <Argument type="Status" name="aNewStatusPlayer2"/>
+        </Method>
+        <Method name="Initialization" returnType="Pair&lt;Player, Player&gt;" visibility="public">
+          <Argument type="String" name="aPlayerName1"/>
+          <Argument type="String" name="aPlayerName2"/>
+        </Method>
+        <Method name="getCurrentWeather" returnType="Wetter" visibility="public"/>
+        <Method name="CalculatePlayerMovement" returnType="void" visibility="private">
+          <Argument type="Player" name="aPlayer"/>
+          <Argument type="Wetter" name="aWeather"/>
+          <Argument type="Status" name="newStatus"/>
+        </Method>
+        <Method name="DetermineMovementEligibility" returnType="boolean" visibility="private">
+          <Argument type="Player" name="aPlayer"/>
+        </Method>
+        <Method name="CalculatePlayerSpeedAfterStatus" returnType="void" visibility="private">
+          <Argument type="Player" name="aPlayer"/>
+          <Argument type="int" name="aStatusDuration"/>
+        </Method>
+        <Method name="CalculatePlayerSpeedAfterWeather" returnType="void" visibility="private">
+          <Argument type="Player" name="aPlayer"/>
+          <Argument type="Wetter" name="aWeather"/>
+        </Method>
+        <Method name="CalculatePlayerFuelConsumption" returnType="void" visibility="private">
+          <Argument type="Player" name="aPlayer"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Enum name="Status" package="" visibility="public" xPosition="2578.0" yPosition="481.0">
+      <Literals>
+        <Literal name="accelerate"/>
+        <Literal name="deccelerate"/>
+        <Literal name="pass"/>
+        <Literal name="sliding"/>
+        <Literal name="win"/>
+      </Literals>
+    </Enum>
+    <Enum name="Wetter" package="" visibility="public" xPosition="1304.0" yPosition="314.0">
+      <Literals>
+        <Literal name="rain"/>
+        <Literal name="snow"/>
+        <Literal name="sunny"/>
+        <Literal name="headwind"/>
+        <Literal name="tailwind"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="fWetter" source="Spielfeld" target="Wetter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="settings" source="SpielFeldView" target="GameSettings" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="GameSettings"/>
+    <UseRelation source="SpielModel" target="Status" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fStatus" source="Player" target="Status" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Player" target="Status" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Ss1" source="SpielFeldView" target="Status" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="SpielModel" target="Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="logic" source="SpielFeldView" target="SpielModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="SpielModel" target="Wetter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Player1" source="SpielFeldView" target="Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fSpielfeld" source="SpielModel" target="Spielfeld" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Spielfeld" target="Wetter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="settingsView" source="GameSettings" target="SettingsView" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsView"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
