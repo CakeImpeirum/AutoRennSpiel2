@@ -52,11 +52,11 @@ public class SpielFeldView extends javax.swing.JFrame {
         Playerlocation1 = autoSpieler1.getLocation();
         PlayerLocation2 = AutoSpieler2.getLocation();
         weatherDisplay.setText("Aktuelles Wetter: " + logic.getCurrentWeather().toString());
-        BufferedImage car1Picture = ImageIO.read(new File("C:\\Development\\Smit\\AutoRennSpiel2\\AutorennSpiel\\src\\AutoWeiß.png"));
+        BufferedImage car1Picture = ImageIO.read(getClass().getResource("resources/AutoWeiß.png"));
         JLabel picLabelP1 = new JLabel(new ImageIcon(car1Picture));
         picLabelP1.setBounds(0, 0, 100, 100);
         autoSpieler1.add(picLabelP1);
-        BufferedImage car2Picture = ImageIO.read(new File("C:\\Development\\Smit\\AutoRennSpiel2\\AutorennSpiel\\src\\AutoGelb.png"));
+        BufferedImage car2Picture = ImageIO.read(getClass().getResource("resources/AutoGelb.png"));
         JLabel picLabelP2 = new JLabel(new ImageIcon(car2Picture));
         picLabelP2.setBounds(0, 0, 100, 100);
         AutoSpieler2.add(picLabelP2);
